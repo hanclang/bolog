@@ -1,0 +1,82 @@
+extend ../layout
+
+block content
+  .container
+    .row
+      form.form-horizontal(method="post", action="/admin/saveUser", enctype='multipart/form-data')
+        if user._id
+          input(type="hidden", name="user[_id]", value=user._id)
+        .form-group
+          label.col-sm-2.control-label(for='userName') 用户名:
+          .col-sm-10
+            input#userName.form-control(type="text", name="user[name]", value=user.name)
+        .form-group
+          label.col-sm-2.control-label(for="userPassword") 密码:
+          .col-sm-10
+            input#userPassword.form-control(type="text", name="user[password]", vaule=user.password)
+        .form-group
+          label.col-sm-2.control-label(for="sex") 性别:
+          .col-sm-10
+            label.radio-inline
+              input(type='radio', name='user[sex]', value='男', checked=user.sex=='男')
+              span 男
+            label.radio-inline
+              input(type='radio', name='user[sex]', value='女', checked=user.sex=='女')
+              span 女
+        .form-group
+          label.col-sm-2.control-label(for="role") 用户角色:
+          .col-sm-10
+            select.form-control(name="user[role]")
+              option(value='1', selected=user.role==1) 普通用户
+              option(value='20', selected=user.role==20) 普通管理员
+              option(value='50', selected=user.role==50) 超级管理员
+        .form-group
+          label.col-sm-2.control-label(for='tel') 手机号码:
+          .col-sm-10
+            input#tel.form-control(type="text", name="user[tel]", value=user.tel)
+        .form-group
+          label.col-sm-2.control-label(for='email') 邮箱:
+          .col-sm-10
+            input#email.form-control(type="text", name="user[email]", value=user.email)
+        .form-group
+          label.col-sm-2.control-label 用户头像:
+          .col-sm-10
+            if user.img
+              img#imgPreview(src="#{user.img}", style="width: 80px; height: 80px;")
+            else
+              img#imgPreview(src="/upload/1.jpg", style="width: 80px; height: 80px;" alt="555")
+        .form-group
+          label.col-sm-2.control-label(for="uploadPic")
+          .col-sm-10
+            button.btn.btn-default(style='position: relative') 头像上传
+              input#uploadPic(onchange="imgPrevie(this)", type='file', name='uploadPic', style='position: absolute;left: 0;top: 0;z-index: 1;width: 100%;opacity: 0;cursor: pointer;height:100%;')
+        .form-group
+          label.col-sm-2.control-label(for="describe") 描述:
+          .col-sm-10
+            textarea#describe.form-control(name="user[describe]", rows="5") #{user.describe}
+        .form-group
+          .col-sm-offset-11.col-sm-1
+            button.btn.btn-primary(type='submit') 录入
+  script(type='text/javascript').
+    function imgPrevie(fileDom) {
+      if(window.FileReader) {
+        var reader = new FileReader();
+      } else {
+        alter("...")
+      }
+
+      var file = fileDom.files[0];
+      var imageType = /^image\//;
+
+      if(!imageType.test(file.type)) {
+        alter("...");
+        return ;
+      }
+
+      reader.onload = function(e) {
+        var img = document.getElementById("imgPreview");
+
+        img.src = e.target.result;
+      }
+      reader.readAsDataURL(file);
+    }
