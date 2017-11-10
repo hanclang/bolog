@@ -47,7 +47,7 @@ exports.save = function(req, res) {
       }else if (categoryName) {
         var category = new Category({
           name: categoryName,
-          movies: [movie._id]
+          movie: [movie._id]
         })
 
         category.save(function(err, category) {

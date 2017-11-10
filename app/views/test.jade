@@ -1,0 +1,18 @@
+extend ./layout
+
+block content
+  .container
+    .row
+      .col-sm-12
+        div#editor
+  script(src="libs/wangEditor/release/wangEditor.min.js")
+  script(type='text/javascript').
+    var E = window.wangEditor
+        var editor = new E('#editor')
+        // 或者 var editor = new E( document.getElementById('#editor') )
+        editor.customConfig.uploadImgServer = '/upload'
+        editor.customConfig.uploadFileName = 'yourFileName'
+        editor.customConfig.uploadImgHeaders = {
+            'Accept': 'application/json'
+        }
+        editor.create()

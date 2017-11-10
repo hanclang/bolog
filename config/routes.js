@@ -16,6 +16,8 @@ module.exports = function(app) {
   })
 
   app.get('/', Index.index);
+  app.get('/test', Index.test);
+  app.post('/upload', multipartMiddleware, Index.upload);
 
   app.post('/user/signup', Login.signup);
   app.post('/user/signin', Login.signin);
@@ -26,9 +28,6 @@ module.exports = function(app) {
   app.get('/admin/updateUser', User.updateUser);
   app.get('/admin/userList', User.userList);
   app.post('/admin/saveUser', multipartMiddleware, User.savePic, User.saveUser);
-  app.get('/admin/user/list', User.signinRequired, User.adminRequired, User.list)
-  app.get('/admin/user/detail', User.detail)
-  app.post('/admin/user/info',multipartMiddleware, User.adminRequired, User.signinRequired, User.savePic, User.saveInf)
 
   app.get('/movie/:id', Movie.detail);
   app.get('/admin/movie/new', User.signinRequired, User.adminRequired, Movie.new);

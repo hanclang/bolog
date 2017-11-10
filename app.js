@@ -21,11 +21,11 @@ mongoose.connect(dbUrl);
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', './app/views');
 app.set('view engine', 'jade');
-app.use(cookieParser());
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '1mb'}));
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(cookieParser());
 app.use(session({
   secret: 'my',
   store: new mongoStore({

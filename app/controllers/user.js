@@ -73,7 +73,7 @@ exports.saveUser = function(req, res) {
       if(err) {
         console.log(err);
       }else {
-        _User = Object.assign(user, userObj);
+        _User = Object.assign(userObj, user);
         if(headPic) {
           _User.img = headPic;
         }

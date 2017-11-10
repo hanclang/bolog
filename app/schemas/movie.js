@@ -2,22 +2,20 @@ var mongoose = require('mongoose');
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var MovieSchema = new mongoose.Schema({
-  doctor: String,
   title: String,
-  language: String,
-  country: String,
-  summary: String,
-  flash: String,
-  poster: String,
-  year: Number,
-  pv: {
+  author: String,
+  label: String,
+  issue: {
     type: Number,
     default: 0
   },
+  like: Number,
+  country: String,
   category: {
     type: ObjectId,
     ref: 'Category'
   },
+  text: String,
   meta: {
     createAt: {
       type: Date,
