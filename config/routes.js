@@ -3,6 +3,7 @@ var User = require('../app/controllers/user');
 var Login = require('../app/controllers/login');
 var Movie = require('../app/controllers/movie');
 var Category = require('../app/controllers/category');
+var Label = require('../app/controllers/label');
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
 
@@ -14,6 +15,9 @@ module.exports = function(app) {
     }
     next();
   })
+  app.get("/label/add", Label.saveLabel);
+  app.get('/label', Label.findAll);
+  app.get('/label/del', Label.deleteLabel);
 
   app.get('/', Index.index);
   app.get('/test', Index.test);
@@ -24,6 +28,8 @@ module.exports = function(app) {
   app.get('/signin', Login.showSignin);
   app.get('/signup', Login.showSignup);
   app.get('/logout', Login.logout);
+  app.get('/logout', Movie.add);
+
 
   app.get('/admin/updateUser', User.updateUser);
   app.get('/admin/userList', User.userList);

@@ -3,12 +3,44 @@ extend ./layout
 block content
   .container
     .row
-      .col-sm-12
-        div#editor
+      form.form-horizontal(method="post", action="/admin/saveUser", enctype='multipart/form-data')
+        .form-group
+          label.col-sm-2.control-label(for='title') 标题
+          .col-sm-10
+            input#title.form-control(type='text')
+        .from-group
+          label.col-sm-2.control-label(for='author') 作者
+          .col-sm-10
+            input#author.form-control(type='text')
+        .form-group
+          label.col-sm-2.control-label(type='label') 标签
+          .col-sm-10
+            input#label.form-control(type='text')
+        .form-group
+          label.col-sm-2.control-label(for='isUse') 是否发布
+          .col-sm-10
+            label.radio-inline
+              input(type='radio', value='1')
+              span 是
+            label.radio-inline
+              input(type='radio', value='0')
+              span 否
+        .form-group
+          label.col-sm-2.control-label(for='country') 地区
+          .col-sm-10
+            input#country.form-control(type='text')
+        .form-group
+          label.col-sm-2.control-label(for='category') 类别
+          .col-sm-10
+            select#category
+              each cat in categories
+                option(value=#{cat.name}) #{cat.name}
+        .col-sm-12
+          div#text
   script(src="libs/wangEditor/release/wangEditor.min.js")
   script(type='text/javascript').
     var E = window.wangEditor
-        var editor = new E('#editor')
+        var editor = new E('#text')
         // 或者 var editor = new E( document.getElementById('#editor') )
         editor.customConfig.uploadImgServer = '/upload'
         editor.customConfig.uploadFileName = 'yourFileName'

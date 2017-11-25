@@ -38,20 +38,21 @@ UserSchema.pre('save', function(next) {
 
   if(this.isNew) {
     this.meta.createAt = this.meta.update = Date.now();
-  }else {
-    this.meta.update = Date.now();
-  }
-
-  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-    if(err) return next(err)
-
-    bcrypt.hash(user.password, salt, null, function(err, hash) {
+    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
       if(err) return next(err)
 
-      user.password = hash;
-      next();
+      bcrypt.hash(user.password, salt, null, function(err, hash) {
+        if(err) return next(err)
+
+        user.password = hash;
+        next();
+      })
     })
-  })
+  }else {
+    this.meta.update = Date.now();
+    next();
+  }
+
 })
 
 UserSchema.methods = {

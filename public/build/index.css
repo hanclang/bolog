@@ -1,1 +1,60 @@
 .thumbnail{max-height:100px}
+
+.fr{
+    float: right;
+}
+.fr a{
+    border-radius: 5px;
+    display: inline-block;
+    width: 50px;
+    height: 20px;
+    background: lightblue;
+    color: white;
+    text-align: center;
+}
+.label{
+    width: 150px;
+    height: 25px;
+    background: tomato;
+    text-align: center;
+    line-height: 25px;
+    color: white;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+.label div{
+    display: none;
+    position: absolute;
+    right: 0px;
+    width: 16px;
+    height: 25px;
+    top: 0px;
+    line-height: 25px;
+    background: #ccc;
+}
+#w{
+    display: inline-block;
+}
+.write{
+    border-radius: 5px;
+    outline: none;
+    margin-right: 10px;
+    display: inline-block;
+    border-bottom: 1px solid;
+    width: 150px;
+    height: 25px;
+    line-height: 25px;
+}
+#w .ok{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: #e28059;
+    color: white;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 5px;
+}

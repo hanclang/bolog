@@ -5,7 +5,7 @@ var MovieSchema = new mongoose.Schema({
   title: String,
   author: String,
   label: String,
-  issue: {
+  isUse: {
     type: Number,
     default: 0
   },

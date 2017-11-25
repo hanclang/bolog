@@ -137,3 +137,13 @@ exports.del = function(req, res) {
     })
   }
 }
+
+exports.add = function(req, res) {
+    Category.find({}, function(err, categories) {
+        res.render('admin', {
+            title: '后台录入页',
+            categories: categories,
+            movie: {}
+        })
+    })
+}

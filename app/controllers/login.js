@@ -13,6 +13,12 @@ exports.showSignin = function(req, res) {
   })
 }
 
+exports.label = function (req, res) {
+    res.render("label/label",{
+      title: 'label'
+    })
+}
+
 exports.signup = function(req, res) {
   var _user = req.body.user;
   User.findOne({name: _user.name}, function(err, user) {
