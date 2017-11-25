@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+    .container
+        div.fr
+            a(href="javascript:void(0)" onclick="han.addlabelshow()") 添加
+        div#showlabel
+            each label in labelList
+                div.label(onclick="han.show(this)") #{label.labelname}
+                    div(onclick="han.deletelabel(this)" labelId="#{label._id}") x
